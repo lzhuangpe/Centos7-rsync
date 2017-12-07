@@ -11,7 +11,7 @@ tar -zxf $Version.tar.gz && cd $Version
 ./configure
 make && make install
 
-echo "{$User}:{$Passwd}" >>/etc/rsyncd.passwd
+echo "$User:$Passwd" >>/etc/rsyncd.passwd
 chmod 600 /etc/rsyncd.passwd
 
 mkdir -p /$BackPath
