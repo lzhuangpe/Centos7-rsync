@@ -9,7 +9,7 @@ yum install -y rsync
 echo "$User:$Passwd" >>/etc/rsyncd.passwd
 chmod 600 /etc/rsyncd.passwd
 
-mkdir -p /$BackPath
+mkdir -p $BackPath
 
 cat > /etc/rsyncd.conf << EOF
 # /etc/rsyncd: configuration file for rsync daemon mode
@@ -20,22 +20,22 @@ cat > /etc/rsyncd.conf << EOF
 
 uid = root
 gid = root
-max connections = 5                     #最大连接数
-timeout = 600                           #超时时间
+max connections = 5
+timeout = 600
 pid file = /var/run/rsyncd.pid
 lock file = /var/run/rsync.lock
 log file = /var/log/rsync.log
 
 [backup]
 path = /backup
-auth users = backup                     #同步的虚拟用户名
-secrets file = /etc/rsyncd.passwd       #虚拟用户密码文件
-hosts allow = 192.168.1.0/24            #允许访问的IP
-hosts deny = *                          #拒绝所有IP访问
-read only =  false                      #设置可写
-use chroot = false                      #不允许切换目录
-list = false                            #不允许显示列表
-ignore = errors                         #忽略错误
+auth users = backup
+secrets file = /etc/rsyncd.passwd
+#hosts allow = 192.168.1.0/24
+#hosts deny = *
+read only = no
+use chroot = no
+list = no
+ignore errors
 EOF
 
 systemctl enable rsyncd && systemctl start rsyncd
