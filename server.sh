@@ -43,7 +43,7 @@ list = no                               #不允许显示列表
 ignore errors                           #忽略错误
 EOF
 
-echo "/usr/bin/rsync --daemon" > /etc/rc.d/rc.local
+echo "/usr/bin/rsync --daemon" >> /etc/rc.d/rc.local
 chmod +x /etc/rc.d/rc.local
 /usr/bin/rsync --daemon
 
