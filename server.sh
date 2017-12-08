@@ -44,5 +44,4 @@ secrets file = /etc/rsync.passwd    #虚拟用户密码
 path = /backup
 EOF
 
-echo "/usr/local/bin/rsync --daemon" >>/etc/rc.local && chmod +x /etc/rc.d/rc.local
-/usr/local/bin/rsync --daemon
+systemctl enable rsyncd && systemctl start rsyncd
